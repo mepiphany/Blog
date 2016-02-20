@@ -1,0 +1,16 @@
+<%= @post.errors.full_messages.join(" ") %>
+<%= form_for @post do |f| %>
+<div>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+</div>
+<div>
+  <%= f.label :body %>
+  <%= f.text_area :body %>
+</div>
+  <%= f.label :category %>
+  <%= f.collection_select(:category_id, Category.order(:name), :id, :name) %>
+<div>
+  <%= f.submit %>
+</div>
+<% end %>

@@ -1,0 +1,12 @@
+<h1>Posts(<%= @posts.length %>)</h1>
+
+<% @posts.each do |name| %>
+<hr>
+<%= link_to name.title, post_path(name)  %>
+<%= link_to "Delete", post_path(name),
+                      method: :delete,
+                      data: { confirm: "are you sure"}%>
+
+<% end %>
+
+<%= paginate @posts %>
