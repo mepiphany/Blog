@@ -15,6 +15,6 @@ end
   Comment.create body: Faker::Lorem.sentence
 end
 
-["Art", "Science", "Cats", "Sports", "Technology", "Game", "Code", "Dogs", "Food", "Arts"].each do |cat|
+["Art", "Science", "Cats", "Sports", "Technology", "Game", "Code", "Dogs", "Food", "Music"].each do |cat|
   Category.create(name: cat)
 end
