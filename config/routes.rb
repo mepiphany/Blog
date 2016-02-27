@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'sessions/new'
+
+  get 'sessions/create'
+
+  get 'sessions/destroy'
+
   get "/posts/new" => "posts#new", as: :new_post
   post "/posts" => "posts#create", as: :posts
   get "/posts/:id" => "posts#show", as: :post
@@ -24,7 +30,17 @@ Rails.application.routes.draw do
 
   end
 
-  resources :users, only: [:create, :new]
+  resources :users, only: [:create, :new, :edit, :update]
+
+  resources :sessions, only: [:new, :create, :destroy] do
+    delete :destroy, on: :collection
+  end
+
+  get "/users/:id/edit_password" => "users#edit_password", as: :edit_password
+  patch "/users/:id/update_password" => "users#update_password", as: :update_password
+
+
+
 
 
 
