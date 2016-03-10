@@ -11,6 +11,7 @@
 
 class PostsController < ApplicationController
 
+
   def index
     @posts = Post.all.page(params[:page]).per(10)
   end
@@ -41,13 +42,19 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find params[:id]
+
   end
 
   def update
     post_params = params.require(:post).permit([:title, :body, :category_id])
     @post = Post.find params[:id]
-    @post.update post_params
-    redirect_to post_path(@post)
+    if can?(:edit, @post)
+      @post.update post_params
+      redirect_to post_path(@post)
+    else
+      # same as render nothing: true, status: :forbidden
+      head 403
+    end
   end
 
   def destroy

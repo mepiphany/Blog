@@ -10,6 +10,8 @@
 
 class Comment < ActiveRecord::Base
   belongs_to :post
+
+  belongs_to :user
   # after_save :organize_by_recent_date
 
   validates :body, presence: true, uniqueness: { scope: :post_id }

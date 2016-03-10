@@ -23,6 +23,10 @@ class Post < ActiveRecord::Base
 
   validates :body, length: { minimum: 3, maximum: 300 }
 
+  def user_id
+    return false
+  end
+
   def self.search(search)
     post_search = "%" + search + "%"
     where("title ILIKE ? OR body ILIKE ?", post_search, post_search )
