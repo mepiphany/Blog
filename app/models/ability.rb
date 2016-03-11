@@ -7,17 +7,12 @@ class Ability
       user ||= User.new # guest user (not logged in)
       if user
         can [:create, :read, :edit, :destroy, :update], Post, user_id: user.id
+        can [:destroy, :create], Comment, user_id: user.id
+        # can :destroy, Comment, Post: {user_id: user.id}
+        can :destroy, Comment, post: { user_id: user.id }
       else
         can :read, :all
       end
-
-
-
-
-
-
-
-
     #
     # The first argument to `can` is the action you are giving the user
     # permission to do.

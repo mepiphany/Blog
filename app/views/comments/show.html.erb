@@ -1,5 +1,6 @@
-<h1><%= @comment.body  %></h1>
-<p><%= @comment.created_at  %></p>
+<h1>Body: <%= @comment.body  %></h1>
+<p>Created At: <%= @comment.created_at  %></p>
+<p>Name: <%= @comment.user.full_name  %></p>
 
 <%= link_to "Edit", edit_comment_path  %>
 <%= link_to "Delete", comment_path(@comment),

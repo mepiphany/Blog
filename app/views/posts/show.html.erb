@@ -22,12 +22,15 @@
 <% end %>
 
 <% @post.comments.by_most_recent.each_with_index do |com,index| %>
-<p><%= com.body %></p>
+<p>Body: <%= com.body %></p>
 <p>Created At: <%= com.created_at.strftime("%Y-%b-%d-%T") %></p>
+<p>By: <%= com.user.first_name %></p>
 <p><%= "#{index + 1}" %></p>
 
+<% if can? :destroy, com %>
 <%= link_to "Delete", post_comment_path(@post, com),
                       method: :delete,
                       data: { confirm: "Are you Sure?"} %>
+<% end %>
 <hr>
 <% end %>
