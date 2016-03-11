@@ -19,6 +19,9 @@ class User < ActiveRecord::Base
 
   validates :password_confirmation, presence: true, if: :changing_password?
 
+  def full_name
+    "#{first_name} #{last_name}".titleize
+  end
 
   private
 

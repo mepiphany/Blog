@@ -2,12 +2,16 @@
 <p>Body: <%= @post.body %></p>
 <p>Created at: <%= @post.created_at %></p>
 <p>Category: <%= @post.category_name %></p>
+<p>Created by: <%= @post.user.full_name %></p>
 
-<%= link_to "Edit", edit_post_path(@post) %>
-<%= link_to "Delete", post_path(@post),
-                      method: :delete,
-                      data: {confirm: "Are You Sure?"} %>
-<%= link_to "Create", new_post_path %>
+<% if can? :update, @post %>
+  <%= link_to "Edit", edit_post_path(@post) %>
+<% end %>
+<% if can? :destroy, @post %>
+  <%= link_to "Delete", post_path(@post),
+                        method: :delete,
+                        data: {confirm: "Are You Sure?"} %>
+<% end %>
 
 <%= form_for [@post, @comments] do |f| %>
 <div>

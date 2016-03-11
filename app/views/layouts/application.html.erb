@@ -12,10 +12,11 @@
   <%= link_to "New Post", new_post_path %> |
   <%= link_to "Posts", posts_path %> |
   <% if current_user %>
-     <p>Hello! <%= link_to current_user.first_name, edit_user_path(current_user) %> <%= link_to "Logout", sessions_path, method: :delete %></p>
+     Hello! <%= link_to current_user.first_name, edit_user_path(current_user) %>
+               <%= link_to "Logout", sessions_path, method: :delete %>
   <% else %>
         <%= link_to "Sign-up", new_user_path %> |
-     <p><%= link_to "Log-in", new_session_path %></p>
+        <%= link_to "Log-in", new_session_path %>
   <% end %>
   <br>
   <%= notice || alert %>

@@ -10,6 +10,7 @@
 #
 
 class Post < ActiveRecord::Base
+  belongs_to :user
 
   has_many(:comments, {dependent: :destroy})
   belongs_to :category
@@ -22,10 +23,6 @@ class Post < ActiveRecord::Base
                     uniqueness: true
 
   validates :body, length: { minimum: 3, maximum: 300 }
-
-  def user_id
-    return false
-  end
 
   def self.search(search)
     post_search = "%" + search + "%"
