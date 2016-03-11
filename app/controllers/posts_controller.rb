@@ -12,8 +12,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user, except: [:index, :show]
   load_and_authorize_resource
-
-
+  skip_authorize_resource only: :show
 
 
   def index
