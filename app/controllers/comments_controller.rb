@@ -31,8 +31,13 @@ class CommentsController < ApplicationController
     # @comment.post_id = @post.id (both are same)
     @comment.post = @post
     @comment.user = current_user
-    @comment.save
-    redirect_to post_path(@post)
+    if @comment.save
+      CommentsMailer.notify_post_owner(@comment).deliver_now
+       redirect_to post_path(@post)
+    else
+       flash[:notice] = "Comment wasn't created!"
+       render :new
+    end
   end
 
   def show
