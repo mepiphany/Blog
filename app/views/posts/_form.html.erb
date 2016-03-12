@@ -1,16 +1,14 @@
 <%= @post.errors.full_messages.join(" ") %>
-<%= form_for @post do |f| %>
+<%= simple_form_for @post do |f| %>
 <div>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
+  <%= f.input :title %>
 </div>
 <div>
-  <%= f.label :body %>
-  <%= f.text_area :body %>
+  <%= f.input :body %>
 </div>
-  <%= f.label :category %>
-  <%= f.collection_select(:category_id, Category.order(:name), :id, :name) %>
+  <%= f.input :category_id, collection: Category.order(:name),
+              value_method: :id, label: :name, include_blank: false %>
 <div>
-  <%= f.submit %>
+  <%= f.button :submit %>
 </div>
 <% end %>

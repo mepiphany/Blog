@@ -1,20 +1,17 @@
 <%= @user.errors.full_messages.join(", ") %>
 <h1>Update</h1>
 
-<%= form_for @user do |f| %>
+<%= simple_form_for @user do |f| %>
   <div>
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
+    <%= f.input :first_name %>
   </div>
   <div>
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
+    <%= f.input :last_name %>
   </div>
   <div>
-    <%= f.label :email %>
-    <%= f.email_field :email %>
+    <%= f.input :email %>
   </div>
-  <%= f.submit %>
+  <%= f.button :submit %>
 <% end %>
 
 <%= link_to "Change Password", edit_password_path(@user) %>

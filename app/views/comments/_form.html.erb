@@ -1,8 +1,7 @@
 <%= @comment.errors.full_messages.join(", ") %>
 
-<%= form_for [@post, @comment], remote: true do |f| %>
-  <%= f.label :body  %>
-  <%= f.text_area :body  %>
+<%= simple_form_for [@post, @comment], remote: true do |f| %>
+  <%= f.input :body  %>
   <br>
-  <%= f.submit %>
+  <%= f.button :submit %>
 <% end %>

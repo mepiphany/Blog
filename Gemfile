@@ -35,6 +35,8 @@ gem 'letter_opener'
 gem "delayed_job_active_record"
 gem "delayed_job_web"
 gem 'friendly_id'
+gem "simple_form"
+gem "bootstrap-sass"
 
 # Use Unicorn as the app server
 # gem 'unicorn'
