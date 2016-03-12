@@ -32,7 +32,7 @@ class CommentsController < ApplicationController
     @comment.post = @post
     @comment.user = current_user
     if @comment.save
-      CommentsMailer.notify_post_owner(@comment).deliver_now
+      CommentsMailer.notify_post_owner(@comment).deliver_later
        redirect_to post_path(@post)
     else
        flash[:notice] = "Comment wasn't created!"
