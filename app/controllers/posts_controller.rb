@@ -10,6 +10,7 @@
 #
 
 class PostsController < ApplicationController
+  before_action :find_post, only: [:show, :edit, :update, :delete]
   before_action :authenticate_user, except: [:index, :show]
   load_and_authorize_resource
   skip_authorize_resource only: :show
@@ -43,11 +44,10 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find params[:id]
-
   end
 
   def update
+    @post.slug = nil
     if @post.update post_params
       redirect_to post_path(@post)
     else
@@ -61,6 +61,10 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def find_post
+    @post = Post.friendly.find(params[:id])
+  end
 
   def post_params
     params.require(:post).permit([:title, :body, :category_id, :user_id])
