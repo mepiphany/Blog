@@ -6,19 +6,27 @@ class FavoritesController < ApplicationController
   end
 
   def create
-    post = Post.find params[:post_id]
-    favor = Favorite.new(post: post, user: current_user)
-    if favor.save
-       redirect_to post_path(post), notice: "Added to your favorite"
-    else
-      redirect_to post_path(post), alert: "it is already added to your favorite"
-     end
+    @post = Post.find params[:post_id]
+    favor = Favorite.new(post: @post, user: current_user)
+    respond_to do |format|
+      if favor.save
+         format.html { redirect_to post_path(@post), notice: "Added to your favorite" }
+         format.js { render :successful_favor }
+
+      else
+         format.html { redirect_to post_path(@post), alert: "it is already added to your favorite" }
+         format.js { redner :unsuccessful_favor }
+      end
+    end
   end
 
   def destroy
     @post = Post.find params[:post_id]
     favor = current_user.favorites.find params[:id]
-    favor.destroy
-    redirect_to post_path(@post), alert: "removed!"
+    respond_to do |format|
+      favor.destroy
+      format.html { redirect_to post_path(@post), alert: "removed!" }
+      format.js { render }
+   end
   end
 end

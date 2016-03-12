@@ -4,14 +4,10 @@
 <p>Category: <%= @post.category_name %></p>
 <p>Created by: <%= @post.user.full_name %></p>
 
-<% favor = @post.favor_for(current_user) %>
-<% if favor %>
-<%= link_to "remove_favorite", post_favorite_path(@post, favor), method: :delete %>
-<% else %>
-<%= link_to "favorite", post_favorites_path(@post), method: :post %>
-<% end %>
-(<%= @post.favorites.count %>)
-<br>
+<div id="favorite-post">
+<%= render "/favorites/post_favor" %>
+</div>
+
 
 <% if can? :update, @post %>
   <%= link_to "Edit", edit_post_path(@post) %>
