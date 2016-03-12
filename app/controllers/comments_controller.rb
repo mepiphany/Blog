@@ -31,12 +31,15 @@ class CommentsController < ApplicationController
     # @comment.post_id = @post.id (both are same)
     @comment.post = @post
     @comment.user = current_user
-    if @comment.save
-      CommentsMailer.notify_post_owner(@comment).deliver_later
-       redirect_to post_path(@post)
-    else
-       flash[:notice] = "Comment wasn't created!"
-       render :new
+    respond_to do |format|
+      if @comment.save
+        #  CommentsMailer.notify_post_owner(@comment).deliver_later
+         format.html {redirect_to post_path(@post), notice: "You have commented!"}
+         format.js { render :successful_comment}
+      else
+         format.html {render :new}
+         format.js { render :unsucessful_comment}
+      end
     end
   end
 
@@ -56,9 +59,11 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment.destroy
-    redirect_to post_path(params[:post_id]), notice: "Comment Deleted!"
-
+    respond_to do |format|
+      @comment.destroy
+      format.html {redirect_to post_path(params[:post_id]), notice: "Comment Deleted!"}
+      format.js {render}
+    end
   end
 
   private
