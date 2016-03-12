@@ -3,9 +3,12 @@
 <% @posts.each do |name| %>
 <hr>
 <%= link_to name.title, post_path(name)  %>
+<% if can? :destroy, name %>
 <%= link_to "Delete", post_path(name),
                       method: :delete,
                       data: { confirm: "are you sure"}%>
+<% end %>
+
 
 <% end %>
 

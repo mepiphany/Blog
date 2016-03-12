@@ -27,6 +27,7 @@ Rails.application.routes.draw do
 
   resources :posts, only: [] do
     resources :comments, only: [:create, :destroy]
+    resources :favorites, only: [:create, :destroy]
 
   end
 
@@ -36,8 +37,11 @@ Rails.application.routes.draw do
     delete :destroy, on: :collection
   end
 
+  resources :favorites, only: :index
+  
   get "/users/:id/edit_password" => "users#edit_password", as: :edit_password
   patch "/users/:id/update_password" => "users#update_password", as: :update_password
+
 
 
 

@@ -2,12 +2,25 @@
 <p>Body: <%= @post.body %></p>
 <p>Created at: <%= @post.created_at %></p>
 <p>Category: <%= @post.category_name %></p>
+<p>Created by: <%= @post.user.full_name %></p>
 
-<%= link_to "Edit", edit_post_path(@post) %>
-<%= link_to "Delete", post_path(@post),
-                      method: :delete,
-                      data: {confirm: "Are You Sure?"} %>
-<%= link_to "Create", new_post_path %>
+<% favor = @post.favor_for(current_user) %>
+<% if favor %>
+<%= link_to "remove_favorite", post_favorite_path(@post, favor), method: :delete %>
+<% else %>
+<%= link_to "favorite", post_favorites_path(@post), method: :post %>
+<% end %>
+(<%= @post.favorites.count %>)
+<br>
+
+<% if can? :update, @post %>
+  <%= link_to "Edit", edit_post_path(@post) %>
+<% end %>
+<% if can? :destroy, @post %>
+  <%= link_to "Delete", post_path(@post),
+                        method: :delete,
+                        data: {confirm: "Are You Sure?"} %>
+<% end %>
 
 <%= form_for [@post, @comments] do |f| %>
 <div>
@@ -18,12 +31,15 @@
 <% end %>
 
 <% @post.comments.by_most_recent.each_with_index do |com,index| %>
-<p><%= com.body %></p>
+<p>Body: <%= com.body %></p>
 <p>Created At: <%= com.created_at.strftime("%Y-%b-%d-%T") %></p>
+<p>By: <%= com.user.first_name %></p>
 <p><%= "#{index + 1}" %></p>
 
+<% if can? :destroy, com %>
 <%= link_to "Delete", post_comment_path(@post, com),
                       method: :delete,
                       data: { confirm: "Are you Sure?"} %>
+<% end %>
 <hr>
 <% end %>

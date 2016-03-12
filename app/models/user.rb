@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
 
   has_many :comments, dependent: :destroy
 
+  has_many :favorites, dependent: :destroy
+  has_many :favored_posts, through: :favorites, source: :post
+
   attr_accessor :current_password
 
   validates :first_name, presence: true
@@ -19,6 +22,9 @@ class User < ActiveRecord::Base
 
   validates :password_confirmation, presence: true, if: :changing_password?
 
+  def full_name
+    "#{first_name} #{last_name}".titleize
+  end
 
   private
 

@@ -7,4 +7,14 @@ class ApplicationController < ActionController::Base
     @user ||= User.find(session[:user_id]) if session[:user_id]
   end
   helper_method :current_user
+
+  def authenticate_user
+      redirect_to new_session_path, notice: "Please Sign-In" unless session[:user_id]
+  end
+
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_path, :alert => exception.message
+  end
+
+
 end

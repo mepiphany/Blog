@@ -9,6 +9,10 @@
 #
 
 class CommentsController < ApplicationController
+  before_action :authenticate_user, except: [:index, :show]
+  load_and_authorize_resource
+
+
   def index
     @comments = Comment.all
 
@@ -19,30 +23,25 @@ class CommentsController < ApplicationController
   end
 
   def create
-    # need to get the post_id
     @post = Post.find params[:post_id]
+    # need to get the post_id
     # need to store
-    comment_params = params.require(:comment).permit(:body)
     @comment = Comment.new(comment_params)
     # The following code is creating post_id
     # @comment.post_id = @post.id (both are same)
     @comment.post = @post
+    @comment.user = current_user
     @comment.save
     redirect_to post_path(@post)
-
   end
 
   def show
-    @comment = Comment.find params[:id]
   end
 
   def edit
-    @comment = Comment.find params[:id]
   end
 
   def update
-    comment_params = params.require(:comment).permit([:body])
-    @comment = Comment.find params[:id]
     if @comment.update(comment_params)
       redirect_to comment_path(@comment), notice: "Your comment has been updated!"
     else
@@ -52,9 +51,15 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find params[:id]
     @comment.destroy
     redirect_to post_path(params[:post_id]), notice: "Comment Deleted!"
+
+  end
+
+  private
+
+  def comment_params
+     params.require(:comment).permit([:body])
   end
 
 end
