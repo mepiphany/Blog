@@ -50,6 +50,11 @@ GEM
     builder (3.2.2)
     byebug (8.2.2)
     cancancan (1.13.1)
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
     choice (0.2.0)
     coderay (1.1.0)
     coffee-rails (4.1.1)
@@ -106,6 +111,7 @@ GEM
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
     mime-types (2.99)
+    mini_magick (4.4.0)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
     multi_json (1.11.2)
@@ -207,6 +213,7 @@ DEPENDENCIES
   bootstrap-sass
   byebug
   cancancan (~> 1.10)
+  carrierwave
   coffee-rails (~> 4.1.0)
   delayed_job_active_record
   delayed_job_web
@@ -219,6 +226,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   letter_opener
+  mini_magick
   pg (~> 0.15)
   pry
   rails (= 4.2.5.1)

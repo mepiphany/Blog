@@ -26,6 +26,10 @@ class Post < ActiveRecord::Base
   #   Comment.where(post_id: id)
   # end
 
+  mount_uploader :image, ImageUploader
+  mount_uploader :file, FileUploader
+
+
 
   validates :title, presence: true,
                     uniqueness: true

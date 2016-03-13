@@ -6,8 +6,16 @@
 <div>
   <%= f.input :body %>
 </div>
+<div>
   <%= f.input :category_id, collection: Category.order(:name),
               value_method: :id, label: :name, include_blank: false %>
+</div>
+<div>
+  <%= f.input :image, multiple: true, hint: "jpg, jpeg, gif, png" %>
+</div>
+<div>
+  <%= f.input :file, as: :file, hint: "jpg, jpeg, gif, png" %>
+</div>
 <div>
   <%= f.button :submit %>
 </div>
