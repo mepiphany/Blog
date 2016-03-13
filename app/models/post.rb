@@ -26,7 +26,7 @@ class Post < ActiveRecord::Base
   #   Comment.where(post_id: id)
   # end
 
-  mount_uploader :image, ImageUploader
+  mount_uploaders :images, ImageUploader
   mount_uploader :file, FileUploader
 
 

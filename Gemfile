@@ -37,7 +37,7 @@ gem "delayed_job_web"
 gem 'friendly_id'
 gem "simple_form"
 gem "bootstrap-sass"
-gem 'carrierwave'
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'mini_magick'
 
 # Use Unicorn as the app server

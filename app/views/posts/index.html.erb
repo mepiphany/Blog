@@ -1,15 +1,14 @@
 <h1>Posts(<%= @posts.length %>)</h1>
 
 <% @posts.each do |name| %>
-<hr>
-<%= link_to name.title, post_path(name)  %>
-<% if can? :destroy, name %>
-<%= link_to "Delete", post_path(name),
+  <%= image_tag name.images[0].url(:thumb) if name.images? %>
+  <%= link_to name.title, post_path(name) %>
+  <% if can? :destroy, name %>
+  <%= link_to "Delete", post_path(name),
                       method: :delete,
                       data: { confirm: "are you sure"}%>
-<% end %>
-
-
+                      <hr>
+  <% end %>
 <% end %>
 
 <%= paginate @posts %>

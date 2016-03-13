@@ -11,10 +11,10 @@
               value_method: :id, label: :name, include_blank: false %>
 </div>
 <div>
-  <%= f.input :image, multiple: true, hint: "jpg, jpeg, gif, png" %>
+  <%= f.input :images, as: :file, input_html: {multiple: true}, hint: "jpg png" %>
 </div>
 <div>
-  <%= f.input :file, as: :file, hint: "jpg, jpeg, gif, png" %>
+  <%= f.input :file, as: :file, hint: "pdf doc txt html odf" %>
 </div>
 <div>
   <%= f.button :submit %>
