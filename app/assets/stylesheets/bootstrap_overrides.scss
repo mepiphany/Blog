@@ -1,2 +1,148 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+
+.header {
+  padding-top: 20px;
+}
+
+.navbar .a {
+  color: #FFF;
+}
+
+.dropdown-toggle {
+  float: right;
+}
+
+.slide1{
+  background-image: url('background1.jpeg');
+  height: 500px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.slide2{
+  background-image: url('background2.jpeg');
+  height: 500px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.slide3{
+  background-image: url('background3.jpeg');
+  height: 500px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.carousel-caption h3{
+  font-size: 1.0em;
+  font-family: 'Pacifico', cursive;
+  padding-bottom: .4em;
+  color: white;
+}
+
+.carousel-caption P {
+  font-size: 0.7em;
+
+}
+
+.carousel-caption {
+  font-size: 2em;
+}
+
+#edit-menu {
+  margin: 0;
+  padding: 0;
+  display: -webkit-box;
+}
+
+div.container #favorite-post {
+  display: inline-block;
+  margin: 0;
+}
+
+.well-sm a {
+  float: right;
+}
+
+.container.space {
+  padding-top: 0;
+}
+
+#favorite-post {
+  padding-top: 0;
+  margin-bottom: 0;
+}
+
+.container.file-edit-menu {
+  padding: inherit;
+}
+
+.well.new-post {
+  padding-top: 0;
+}
+
+body {
+  padding-top: 85px;
+
+
+}
+
+nav {
+  background-color: white;
+}
+
+.simple-form {
+  width: 50%;
+  margin: auto;
+  margin-top: 40px;
+
+}
+
+div .page-header {
+  margin: auto;
+}
+
+.extra-space-bottom {
+  margin-bottom: 20px;
+
+}
+body {
+  position: relative;
+}
+
+nav.navbar {
+  margin-bottom: 0;
+  border-bottom: 0.5px solid lightgrey;
+  height: 85px;
+}
+
+#sidebar-wrapper a {
+  padding: 5px 2px 2px 20px;
+}
+
+
+#sidebar-wrapper i.fa {
+  margin-right: 20px;
+}
+
+#sidebar-wrapper {
+  padding-top: 12px;
+}
+
+.build-space {
+  margin-bottom: 30px;
+}
+
+h1 a.col-post-header {
+  text-decoration: none;
+  color: inherit;
+}
+
+.posts-name h3 a {
+  text-decoration: none;
+  color: #3C3434;
+}

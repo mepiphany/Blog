@@ -1,7 +1,63 @@
-<h1>Hello This Is My Blog</h1>
+<div id="theCarousel" class="carousel slide" data-ride="carousel">
 
-<p>Currently you have</p>
-<ul>
-<li><%= @posts.length %> Posts</li>
-<li><%= @comments.length %> Comments</li>
-</ul>
+  <!-- Define how many slides to put in the carousel -->
+  <ol class="carousel-indicators">
+    <li data-target="#theCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#theCarousel" data-slide-to="1"> </li>
+      <li data-target ="#theCarousel" data-slide-to="2"> </li>
+    </ol >
+
+    <!-- Define the text to place over the image -->
+    <div class="carousel-inner">
+      <div class="item active">
+        <div class ="slide1"></div>
+        <div class="carousel-caption">
+          <h3>"When you want to succeed as bad as you want to breathe, Then you'll be <em>successful</em>"</h3>
+          <p>Eric Thomas</p>
+        </div>
+      </div>
+      <div class="item">
+        <div class="slide2"></div>
+        <div class="carousel-caption">
+          <h3>“Any fool can write code that a computer can understand. Good programmers write code that humans can understand.”</h3>
+          <p>Martin Fowler</p>
+        </div>
+      </div>
+      <div class="item">
+        <div class="slide3"></div>
+        <div class="carousel-caption">
+          <h3>“Be the change that you wish to see in the world.”</h3>
+          <p>Mahatma Gandhi</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Set the actions to take when the arrows are clicked -->
+    <a class="left carousel-control" href="#theCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"> </span>
+    </a>
+    <a class="right carousel-control" href="#theCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+  </div>
+<p class="build-space"></p>
+
+<% recent_post = @posts.order(created_at: :desc).limit(4) %>
+<div class="container">
+  <h3>Most Recent Posts</h3>
+  <div class="row">
+    <% recent_post.each do |post|  %>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+      <div class="thumbnail">
+        <div class="caption">
+          <h4><%= post.title %></h4>
+          <%= image_tag post.images[0].url(:medium) %>
+          <p><%= post.body %></p>
+
+          <p><a href="#" class="btn btn-primary" role="button">View</a></p>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

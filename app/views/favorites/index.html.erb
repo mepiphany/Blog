@@ -1,5 +1,15 @@
-<h1>Favorite Posts</h1>
-<% @posts.each do |post| %>
-<%= link_to post.title, post_path(post) %>
-<hr>
-<% end %>
+<div class="container-fluid">
+  <h1>Favorite Posts</h1>
+</div>
+
+<div class="container">
+  <div class="btn btn-default btn-lg">
+  <% @posts.each do |post| %>
+  <h3><a href="#favorite-post-collapse" data-toggle="collapse"><%= post.title %><span class="caret"></span></a></h3>
+  <div id="favorite-post-collapse" class="collapse" >
+  <p>by: <%= post.user.first_name %></p>
+  <p><%= link_to "View", post_path(post) %></p>
+</div>
+  <% end %>
+</div>
+</div>

@@ -32,9 +32,10 @@ class Post < ActiveRecord::Base
 
 
   validates :title, presence: true,
-                    uniqueness: true
+                    uniqueness: true,
+                    length: { minimum: 3, maximum: 20 }
 
-  validates :body, length: { minimum: 3, maximum: 300 }
+  validates :body, length: { minimum: 3, maximum: 2000 }
 
   def self.search(search)
     post_search = "%" + search + "%"
@@ -48,6 +49,5 @@ class Post < ActiveRecord::Base
   def favor_for(user)
     favorites.find_by_user_id(user)
   end
-
 
  end

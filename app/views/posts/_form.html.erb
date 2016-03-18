@@ -1,22 +1,25 @@
 <%= @post.errors.full_messages.join(" ") %>
-<%= simple_form_for @post do |f| %>
-<div>
-  <%= f.input :title %>
-</div>
-<div>
-  <%= f.input :body %>
-</div>
-<div>
-  <%= f.input :category_id, collection: Category.order(:name),
-              value_method: :id, label: :name, include_blank: false %>
-</div>
-<div>
-  <%= f.input :images, as: :file, input_html: {multiple: true}, hint: "jpg png" %>
-</div>
-<div>
-  <%= f.input :file, as: :file, hint: "pdf doc txt html odf" %>
-</div>
-<div>
-  <%= f.button :submit %>
-</div>
-<% end %>
+  <div class="well">
+
+    <%= simple_form_for @post do |f| %>
+    <div>
+      <%= f.input :title %>
+    </div>
+    <div>
+      <%= f.input :body %>
+    </div>
+    <div>
+      <%= f.input :category_id, collection: Category.order(:name),
+      value_method: :id, label: :name, include_blank: false %>
+    </div>
+    <div>
+      <%= f.input :images, as: :file, input_html: {multiple: true}, hint: "jpg png" %>
+    </div>
+    <div>
+      <%= f.input :file, as: :file, hint: "pdf doc txt html odf" %>
+    </div>
+    <div>
+      <%= f.button :submit %>
+    </div>
+    <% end %>
+  </div>

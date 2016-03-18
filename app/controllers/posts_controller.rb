@@ -10,7 +10,7 @@
 #
 
 class PostsController < ApplicationController
-  before_action :find_post, only: [:show, :edit, :update, :delete]
+  before_action :find_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user, except: [:index, :show]
   load_and_authorize_resource
   skip_authorize_resource only: :show
@@ -57,7 +57,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to posts_path, notice: "Post Deleted!"
+    redirect_to posts_path
   end
 
   private

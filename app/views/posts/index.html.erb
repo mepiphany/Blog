@@ -1,14 +1,29 @@
-<h1>Posts(<%= @posts.length %>)</h1>
+<div class="container-fluid">
+  <h1><a href="#col-post-header" data-toggle="collapse" class="col-post-header">Posts <span class="caret"></span></a></h1>
+  <div id="col-post-header" class="collapse">
+    <p>Number of posts: <%= @posts.length %></p>
+  </div>
+</div>
 
-<% @posts.each do |name| %>
-  <%= image_tag name.images[0].url(:thumb) if name.images? %>
-  <%= link_to name.title, post_path(name) %>
-  <% if can? :destroy, name %>
-  <%= link_to "Delete", post_path(name),
-                      method: :delete,
-                      data: { confirm: "are you sure"}%>
-                      <hr>
-  <% end %>
+
+  <%= paginate @posts %>
+
+
+
+  <% @posts.each do |name| %>
+<div class="container posts-name">
+  <h3><%= link_to name.title, post_path(name) %></h3>
+
+  <div class="media">
+    <a href="#" class="pull-left">
+      <%= image_tag name.images[0].url(:large) if name.images? %>
+    </a>
+    <div class="media-body">
+      <p><%= name.body.truncate(1000) %> <%= link_to "Read More >>", post_path(name)  %></p>
+    </div>
+  </div>
+</div>
 <% end %>
 
-<%= paginate @posts %>
+
+</div>

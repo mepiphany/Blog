@@ -2,7 +2,6 @@ class FavoritesController < ApplicationController
 
   def index
     @posts = current_user.favored_posts
-
   end
 
   def create

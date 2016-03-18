@@ -1,35 +1,66 @@
-<h1>Title: <%= @post.title %></h1>
-<p>Body: <%= @post.body %></p>
-<p>Created at: <%= @post.created_at %></p>
-<p>Category: <%= @post.category_name %></p>
-<p>Created by: <%= @post.user.full_name %></p>
-<% images = @post.images %>
-<% images.each do |image| %>
-<p><%= image_tag image.url(:large) %></p>
-<% end %>
-<% if @post.file? %>
-<p><%= link_to "File", @post.file.url, target: "_blank" %></p>
-<% end %>
+<div class="container-fluid">
+  <div class="container">
+    <div class="media">
+      <div class="media-left media-top">
+        <% images = @post.images %>
+        <% images.each do |image| %>
+        <p><%= image_tag image.url(:large) %></p>
+        <% end %>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><%= @post.title.capitalize %></h3>
+        <p><%= @post.body %></p>
+      </div>
+    </div>
+  </div>
 
-<div id="favorite-post">
-<%= render "/favorites/post_favor" %>
-</div>
+  <div class="container">
+    <div class="col-lg-4 col-md-4 col-sm-8 col-xs-12">
+      <h6><a href="#col2Content" data-toggle="collapse">More Info<span class="caret"></span></a></h6>
+      <div id="col2Content" class="collapse">
+        <p>Created at: <%= @post.created_at %></p>
+        <p>Category: <%= @post.category_name %></p>
+        <p>Created by: <%= @post.user.full_name %></p>
+      </div>
+    </div>
+  </div>
+  <div class="container space">
+    <hr>
+  </div>
 
-<% if can? :update, @post %>
-  <%= link_to "Edit", edit_post_path(@post) %>
-<% end %>
-<% if can? :destroy, @post %>
-  <%= link_to "Delete", post_path(@post),
-                        method: :delete,
-                        data: {confirm: "Are You Sure?"} %>
-<% end %>
+  <div id="favorite-post" class="container">
+    <%= render "/favorites/post_favor" %>
+  </div>
+  <div class="container file-edit-menu">
+    <% if @post.file? %>
+    <%= link_to "File", @post.file.url, target: "_blank" %>
+    <% end %>
+    <div class="container" id="edit-menu">
+      <div class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+        style="text-decoration: none;"><%= icon("pencil")%> <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <% if can? :update, @post %>
+          <li><%= link_to "Edit", edit_post_path(@post) %></li>
+          <% end %>
+          <% if can? :destroy, @post %>
+          <li><%= link_to "Delete", post_path(@post),
+          method: :delete,
+          data: {confirm: "Are You Sure?"} %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <hr>
+  </div>
 
-<div id="comment-form">
-  <%= render "/comments/form"  %>
-</div>
+  <div id="comment-form" class="container">
+    <%= render "/comments/form"  %>
+  </div>
 
-<div id="comments">
-<% @post.comments.by_most_recent.each do |com| %>
-  <%= render "/comments/comments", comment: com %>
-<% end %>
+  <div id="comments">
+    <% @post.comments.by_most_recent.each do |com| %>
+    <%= render "/comments/comments", comment: com %>
+    <% end %>
+  </div>
 </div>
