@@ -42,6 +42,8 @@ gem 'mini_magick'
 
 gem 'font-awesome-sass', '~> 4.5.0'
 
+gem 'rails_12factor', group: :production
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
