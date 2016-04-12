@@ -52,7 +52,7 @@
         <div class="caption">
           <h4><%= post.title %></h4>
           <%= image_tag post.images[0].url(:medium) %>
-          <p><%= post.body %></p>
+          <p><%= post.body.truncate(100) %><%= link_to "More", post_path(post) %></p>
 
           <p><a href="#" class="btn btn-primary" role="button">View</a></p>
         </div>
