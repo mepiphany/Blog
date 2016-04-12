@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
 
 
@@ -41,8 +42,11 @@ Rails.application.routes.draw do
 
   resources :favorites, only: :index
 
+
   get "/users/:id/edit_password" => "users#edit_password", as: :edit_password
   patch "/users/:id/update_password" => "users#update_password", as: :update_password
+
+  resources :password_resets
 
 
 

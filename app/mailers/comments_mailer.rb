@@ -5,5 +5,6 @@ class CommentsMailer < ApplicationMailer
     @post = comment.post
     @owner = @post.user
   mail(to: @owner.email, subject: "You've got a comment!")
+  
   end
 end

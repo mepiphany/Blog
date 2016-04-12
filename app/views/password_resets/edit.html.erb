@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="well simple-form">
+    <%= simple_form_for @user, :url => password_reset_path(params[:id]) do |f| %>
+    <% if @user.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% for message in @user.errors.full_messages %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+    <div>
+      <%= f.input :password %>
+    </div>
+    <div>
+      <%= f.input :password_confirmation %>
+    </div>
+    <div>
+      <%= f.button :submit, "Reset Password", class: "btn btn-primary" %>
+    </div>
+    <% end %>
+  </div>
+</div>
