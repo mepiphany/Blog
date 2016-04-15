@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def authenticate_user
-      redirect_to new_session_path, notice: "Please Sign-In" unless session[:user_id]
+      redirect_to new_session_path, notice: "Please Sign-In" unless cookies[:auth_token]
   end
 
   rescue_from CanCan::AccessDenied do |exception|
