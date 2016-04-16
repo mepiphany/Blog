@@ -54,10 +54,11 @@
         <% end %>
 
           <li class="divider"></li>
-
+        <% if current_user %>
           <li><%= link_to new_post_path, class: "navbar_menu_text" do %></li>
             <i class="fa fa-plus"></i> New post
           <% end %>
+        <% end %>
 
           <li><%= link_to posts_path, class: "navbar_menu_text" do %></li>
             <i class="fa fa-list"></i>Posts

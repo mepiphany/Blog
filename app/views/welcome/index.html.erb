@@ -1,7 +1,7 @@
 <div id="theCarousel" class="carousel slide" data-ride="carousel">
 
   <!-- Define how many slides to put in the carousel -->
-  <ol class="carousel-indicators">
+  <ol class="carousel-indicators hidden">
     <li data-target="#theCarousel" data-slide-to="0" class="active"></li>
       <li data-target="#theCarousel" data-slide-to="1"> </li>
       <li data-target ="#theCarousel" data-slide-to="2"> </li>
@@ -34,10 +34,8 @@
 
     <!-- Set the actions to take when the arrows are clicked -->
     <a class="left carousel-control" href="#theCarousel" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left"> </span>
     </a>
     <a class="right carousel-control" href="#theCarousel" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right"></span>
     </a>
   </div>
 <p class="build-space"></p>
@@ -52,9 +50,9 @@
         <div class="caption">
           <h4><%= post.title %></h4>
           <%= image_tag post.images[0].url(:medium) %>
-          <p><%= post.body.truncate(100) %><%= link_to "More", post_path(post) %></p>
+          <p><%= post.body.length > 100 ? post.body.truncate(100) : post.body%><%= link_to "More", post_path(post) %></p>
 
-          <p><a href="#" class="btn btn-primary" role="button">View</a></p>
+          <p><%= link_to "view", post_path(post), class: "btn btn-primary" %></p>
         </div>
       </div>
     </div>

@@ -13,7 +13,7 @@
 }
 
 .dropdown-toggle {
-  float: right;
+  float: none;
 }
 
 .slide1{
@@ -56,7 +56,7 @@
 #edit-menu {
   margin: 0;
   padding: 0;
-  display: -webkit-box;
+  float: none;
 }
 
 div.container #favorite-post {
@@ -145,4 +145,12 @@ h1 a.col-post-header {
 .posts-name h3 a {
   text-decoration: none;
   color: #3C3434;
+}
+
+.selector-align {
+  display: inline-block;
+}
+
+#content-selector {
+  margin-left: 40px;
 }
