@@ -12,7 +12,6 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to root_path, notice: "Account has been created!"
     else
-      #  binding.pry
       flash[:alert] = "Account wasn't created!"
       render :new
     end
