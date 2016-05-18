@@ -32,6 +32,7 @@ class UsersController < ApplicationController
     end
   end
 
+
   def edit_password
     @user = User.find params[:id]
   end
@@ -39,8 +40,9 @@ class UsersController < ApplicationController
   def update_password
     @user = User.find params[:id]
     user_params = params.require(:user).permit(:current_password, :password, :password_confirmation)
+
     if @user.authenticate(user_params[:current_password]) && @user.update(user_params)
-       redirect_to root_path, notice: "Your password has been updated!"
+        redirect_to root_path, notice: "Your password has been updated!"
      else
        flash[:alert] = "Your password is not updated!"
        render :edit_password

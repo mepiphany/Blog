@@ -115,4 +115,58 @@ RSpec.describe UsersController, type: :controller do
       end
     end
   end
+
+  describe "#edit password" do
+    let(:user) {User.create(first_name: "mike", last_name: "lee", email: "mike@mike.com",
+                       password: "hello", password_confirmation: "hello")}
+    it "renders edit_password page" do
+      get :edit_password, id: user.id
+      expect(response).to render_template(:edit_password)
+    end
+  end
+
+  describe "#update password" do
+    let(:user) {User.create(first_name: "mike", last_name: "lee", email: "mike@mike.com",
+                       password: "hello", password_confirmation: "hello")}
+    context "with valid attributes" do
+      it "updates to a new password" do
+        patch :update_password, id: user.id, user: { current_password: "hello",
+                                                     password: "hellonew",
+                                                     password_confirmation: "hellonew"}
+        expect(user.reload.authenticate("hellonew")).to be
+      end
+      it "redirect_to root_path" do
+        patch :update_password, id: user.id, user: { current_password: "hello",
+                                                     password: "hellonew",
+                                                     password_confirmation: "hellonew"}
+        expect(response).to redirect_to(root_path)
+      end
+      it "displays flash notice" do
+        patch :update_password, id: user.id, user: { current_password: "hello",
+                                                     password: "hellonew",
+                                                     password_confirmation: "hellonew"}
+        expect(flash[:notice]).to be
+      end
+   end
+   context "with invalid attributes" do
+      it "does not update to a new password" do
+        patch :update_password, id: user.id, user: { current_password: "hell",
+                                                     password: "hellonew",
+                                                     password_confirmation: "hellonew"}
+        expect(user.reload.authenticate("hellonew")).not_to be
+      end
+      it "re-renders edit_password page" do
+        patch :update_password, id: user.id, user: { current_password: "hell",
+                                                     password: "hellonew",
+                                                     password_confirmation: "hellonew"}
+        expect(response).to render_template(:edit_password)
+      end
+      it "displays flash alert" do
+        patch :update_password, id: user.id, user: { current_password: "hell",
+                                                     password: "hellonew",
+                                                     password_confirmation: "hellonew"}
+        expect(flash[:alert]).to be
+      end
+   end
+  end
 end
