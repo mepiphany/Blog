@@ -23,7 +23,6 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-
   end
 
   def create
@@ -38,19 +37,17 @@ class PostsController < ApplicationController
 
   def show
     @comment = Comment.new
-
     # @comments = @post.comments
-
   end
 
-  def edit
-  end
+  def edit;end
 
   def update
     @post.slug = nil
     if @post.update post_params
-      redirect_to post_path(@post)
+      redirect_to post_path(@post), notice: "Your post has been updated!"
     else
+      flash[:alert] = "Your post it not updated!"
       render :edit
     end
   end
