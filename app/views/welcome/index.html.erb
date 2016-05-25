@@ -49,9 +49,8 @@
       <div class="thumbnail">
         <div class="caption">
           <h4><%= post.title %></h4>
-          <%#= image_tag post.images[0].url(:medium) %>
+          <%= image_tag post.images? ? post.images[0].url(:medium) : nil %>
           <p><%= post.body.length > 100 ? post.body.truncate(100) : post.body%><%= link_to "More", post_path(post) %></p>
-
           <p><%= link_to "view", post_path(post), class: "btn btn-primary" %></p>
         </div>
       </div>
